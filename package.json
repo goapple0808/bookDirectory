@@ -25,6 +25,6 @@
     "s-pagination": "^2.1.0"
   },
   "engines": {
-   "node": "6.11.1"
+   "node": "v16.13.1"
  }
 }
