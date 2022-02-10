@@ -1,0 +1,90 @@
+<%- include("header") -%>
+<style>
+</style>
+<%- include("navbar") -%>
+<a class="fas fa-plus-circle" href="newBook" style="margin-top: 1rem;"> add book</a>
+<div class="card-columns">
+    <% items.forEach(function(image) { %>
+    <div class="card" style="width: 400px;">
+      <img class="card-img-top" src="data:image/<%=image.img.contentType%>;base64,
+           <%=image.img.data.toString('base64')%>">
+        <div class="card-header">
+            <h4 class="card-title"><%= image.bookName %></h4>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title"><%= image.authorName %></h3>
+          <p class="card-text"><%= image.desc %></p>
+            <a class="btn btn-outline-success learn-more" href="./showBook/<%= image.bookName %>">Learn More</a>
+          <form class="card-control" action="/delete" method="post">
+            <input type="hidden" name=imgID value=<%= image.id %>>
+            <input type="hidden" name="imgName" value=<%= image.imgName %>>
+            <button type="submit" class="fas fa-trash-alt btn btn-outline-danger"></button>
+          </form>
+        </div>
+    </div>
+    <% }) %>
+</div>
+<div class="container" style="margin-bottom:2rem; text-align: center; width: 30%;">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6">
+      <ul class="pagination pagination-part" style="text-align: center; margin: 0 auto;">
+        <% if(prevPage){%>
+          <li class="page-item"><a class="page-link prev" href="book?page=<%= prevPage.page %>&limit=<%= prevPage.limit %>">Previous</a></li>
+        <%}%>
+        <% if(totalPage <= 3){ %>
+          <%for(let i = 1 ; i <= totalPage ; i++){%>
+            <li class="page-item" id="<%=i%>"><a class="page-link current-page" href="book?page=<%= i %>&limit=6"><%= i %></a></li>
+          <%}%>
+        <%} else if(totalPage > 3){%>
+              <%if(currentPage === 1){%>
+                <%for(let i = currentPage ; i < currentPage + 3 ; i++){%>
+                    <li class="page-item" id="<%=i%>"><a class="page-link current-page" href="book?page=<%= i %>&limit=6"><%= i %></a></li>
+                <%}%>
+              <%}else if(currentPage > 1 && currentPage != totalPage){%>
+                    <%for(let i = currentPage - 1 ; i <= currentPage + 1 ; i++){%>
+                        <li class="page-item" id="<%=i%>"><a class="page-link current-page" href="book?page=<%= i %>&limit=6"><%= i %></a></li>
+                    <%}%>
+              <%}else if(currentPage == totalPage){%>
+                  <%for(let i = currentPage - 2 ; i <= currentPage ; i++){%>
+                      <li class="page-item" id="<%=i%>"><a class="page-link current-page" href="book?page=<%= i %>&limit=6"><%= i %></a></li>
+                  <%}%>
+              <%}%>
+          <%}%>
+        <% if(nextPage){ %>
+          <li class="page-item"><a class="page-link next" href="book?page=<%= nextPage.page %>&limit=<%= nextPage.limit %>">Next</a></li>
+        <% } %>
+
+      </ul>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+      <div class="dropdown pagination-part">
+          <input type="text" name="flyPage" value="page" class="btn btn-info dropdown-toggle show-page" data-toggle="dropdown" style="width:60px;">
+          <a class="go-page" href="#">go</a>
+        <div class="dropdown-menu" style="width:50px;">
+          <%for(let i = 1 ; i <= totalPage ; i++){%>
+            <a class="dropdown-item list-page-<%=i%>" style="width:50px;"><%= i %></a>
+          <%}%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+  $("#<%=currentPage%>").addClass("active");
+  for(let i = 1 ; i <= <%= totalPage %> ; i++){
+    $(".list-page-" + i).click(()=>{
+      $(".show-page").attr("value", i);
+      $(".go-page").attr("href", "book?page=" + i + "&limit=6");
+    });
+  }
+</script>
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+        <a class="fas fa-plus-circle" href="newBook"></a>
+    </div>
+  </div>
+</div> -->
+
+<%- include("footer") -%>

@@ -1,0 +1,25 @@
+<%- include("header") -%>
+<%- include("navbar") -%>
+  <h1 style="text-align:center;">Add new book information</h1>
+  <form action="/showBook" method="POST"  encType="multipart/form-data" style="text-align:left; margin-left:6rem;">
+    <label for="book-name">Book name:</label>
+    <input type="text" id="book-name" name="bookName" value="">
+    <br>
+    <br>
+    <label for="author">author name:</label>
+    <input id="author" type="text" name="authorName" value="">
+    <br>
+    <br>
+    <label for="bookmark">Reading Page:</label>
+    <input type="text" name="bookmark" value="">
+    <br>
+    <label for="description">Description:</label>
+    <br>
+    <textarea id="description" name="discription" rows="8" cols="80"></textarea>
+    <br>
+    <label for="image">title-page:</label>
+    <input type="file" name="image" id="image" required>
+    <br>
+    <button class="btn btn-success" type="submit" value="Submit">Submit</button>
+  </form>
+<%- include("footer") -%>

@@ -1,0 +1,24 @@
+<%- include("./header") %>
+<%- include("./navbar") %>
+<div class="card-columns">
+    <% items.forEach(function(image) { %>
+    <div class="card" style="width: 400px;">
+      <img class="card-img-top" src="data:image/<%=image.img.contentType%>;base64,
+           <%=image.img.data.toString('base64')%>">
+        <div class="card-header">
+            <h4 class="card-title"><%= image.bookName %></h4>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title"><%= image.authorName %></h3>
+          <p class="card-text"><%= image.desc %></p>
+            <a class="btn btn-outline-success learn-more" href="./showBook/<%= image.bookName %>">Learn More</a>
+          <form class="card-control" action="/delete" method="post">
+            <input type="hidden" name=imgID value=<%= image.id %>>
+            <input type="hidden" name="imgName" value=<%= image.imgName %>>
+            <button type="submit" class="fas fa-trash-alt btn btn-outline-danger"></button>
+          </form>
+        </div>
+    </div>
+    <% }) %>
+</div>
+<%- include("./footer") %>

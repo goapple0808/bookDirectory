@@ -1,0 +1,23 @@
+<%- include("./header") -%>
+<a class="fas fa-long-arrow-alt-left fa-5x" href="javascript:history.back()" style="color: #1A5F7A;"></a>
+<div class="container" style="width:650px; position:absolute; top: 5rem; left: 10rem;">
+  <div class="row" style="text-align: left; padding: 1rem 0;">
+    <div class="col-12">
+      <h1>Record Of This Book</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <form class="" action="/update/<%= bookName %>" method="post" style="width:600px;">
+        <label for="page" style="padding: 1.5rem 0;">Page:</label>
+        <input type="text" name="page" value="">
+        <br>
+        <label for="desc">Description:</label>
+        <br>
+        <textarea id="desc" name="desc" rows="8" cols="80"></textarea>
+        <button  class="btn" type="submit" name="button" style="margin: 1rem;background-color: #086E7D; color: #FFC900;">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include("./footer") -%>

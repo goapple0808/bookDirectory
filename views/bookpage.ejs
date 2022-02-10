@@ -1,0 +1,31 @@
+<%- include("./header") -%>
+<style>
+  .middle{
+    position: absolute;
+    left: 35%;
+  }
+  .container{
+    width: 40rem;
+  }
+  form{
+    height: 2rem;
+  }
+</style>
+    <a type="submit" href="javascript:history.back()" class="btn fas fa-long-arrow-alt-left fa-5x" style="color: #1A5F7A;"></a>
+<br>
+<div class="container" style="margin-bottom: 1rem;">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <img src="data:item/<%=item.img.contentType%>;base64,<%=item.img.data.toString('base64')%>" style="height:300px; width:200px;">
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <a class="fas fa-edit fa" href="edit/<%= item.bookName %>" style="position: absolute; right: 0; top: 0;"></a>
+      <h4 style="color:#086E7D;"><%= item.bookName %> <br><small><i>author: <%= item.authorName %></i></small></h4>
+      <p>Reading Page: <%= item.bookmark %></p>
+      <p  style="color:#1A5F7A;"><%= item.desc %></p>
+      <a class="fas fa-edit fa" href="edit/<%= item.bookName %>" style="position: absolute; right: 0; top: 0;"></a>
+    </div>
+  </div>
+</div>
+
+<%- include("./footer") -%>
