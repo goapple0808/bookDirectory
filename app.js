@@ -11,7 +11,7 @@ let ejs = require('ejs');
 
 const app = express();
 
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect("mongodb+srv://admin-karta:goorange0808@cluster0.wj5au.mongodb.net/bookInfo?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }, err => {
